@@ -1,0 +1,8 @@
+[Settings]
+Active Compiler=BoostC
+Target=PIC12F629
+[Files]
+File0=mrservo-full.c
+Count=1
+[Debugger]
+DebugFromMain=1
