@@ -34,11 +34,14 @@
 ; frog_power_off_delay is the amount of time the frog power relay will remain off after a throw completes
 ;  The delay is approximately (in seconds) = (frog_power_off_delay / 50)
 
-servo_upperlimit      equ  250
-servo_lowerlimit	  equ  5
+servo_upperlimit      equ 140
+servo_lowerlimit	  equ 100
 servo_halfway         equ (servo_upperlimit + servo_lowerlimit)/2
-servo_ramprate		  equ 5  
+servo_ramprate		  equ 2
 frog_power_off_delay  equ 25 
+
+; Set stall time to 255 to make servo always actively driven
+servo_stalltime		  equ 50
  
 ; END USER CONFIGURATION SECTION
 
@@ -50,6 +53,7 @@ temp2
 temp3
 power_off_timer
 hz50_counter
+stall_counter
 servo_pulsewidth
 	endc
 
@@ -68,6 +72,9 @@ start
 
 	movlw	servo_halfway 
 	movwf	servo_pulsewidth
+
+	movlw	servo_stalltime
+	movwf	stall_counter
 
 main_loop
 	clrwdt
@@ -148,6 +155,35 @@ frog_power_on
 frog_relay_logic_done
 
 
+#if 255 != servo_stalltime 
+; Setup where servo shuts down after a given stall time
+
+stall_timer_logic
+
+	movlw	servo_upperlimit
+	subwf	servo_pulsewidth, w
+	btfsc	STATUS, Z
+	goto	stall_countdown
+	
+	movlw	servo_lowerlimit
+	subwf	servo_pulsewidth, w
+	btfsc	STATUS, Z
+	goto	stall_countdown
+
+	; If we're here, the servo is in motion, keep resetting the stall counter
+	movlw	servo_stalltime
+	movwf	stall_counter
+	goto	stall_timer_logic_done
+
+stall_countdown
+	movf	stall_counter
+	btfss	STATUS, Z
+	decf	stall_counter, f	
+
+stall_timer_logic_done
+
+#endif
+
 
 start_delay
 ; 50 Hz code - roughly
@@ -171,6 +207,9 @@ delay_5ms_inner
 
 	incf hz50_counter, f
 
+	movf	stall_counter
+	btfsc	STATUS, Z
+	goto	main_loop
 
 ; Send base (1 ms) servo pulse
 	bsf		GPIO,0
