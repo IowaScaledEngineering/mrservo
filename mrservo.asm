@@ -1,10 +1,19 @@
 ; Slow Motion Servo Turnout Motor Controller
-; File: mrservo.asm  Version: 1.0  Modified:15-Jun-2011
+; File: mrservo.asm  Version: 1.1  Modified:30-Jul-2011
 ;  Copyright 2011 Nathan D. Holmes (maverick@drgw.net) 
 ;  See http://www.ndholmes.com/pmwiki.php/Electronics/ServoMotor
 ;   for more information and schematic
 ;  This is Free Software, licensed under the GPL v2, see for details:
 ;      http://www.gnu.org/licenses/gpl-2.0.txt
+
+; Version Notes
+; v1.2 -  5 Aug 2011 - Added aux_output_mode to set the outputs based on direction rather
+;                       than being used for power and direction relays
+; v1.1 - 30 Jul 2011 - Added ability to shut down the PWM a short time after the servo reaches
+;                       full throw.  This way, the servo doesn't burn out and you don't have to
+;                       have perfect calibration on the throw.  Also slowed down the throw and
+;                       adjusted the limit constants to something more realistic.
+; v1.0 - 15 Jun 2011 - First public release
 
 #include p10f200.inc
 	
@@ -42,6 +51,11 @@ frog_power_off_delay  equ 25
 
 ; Set stall time to 255 to make servo always actively driven
 servo_stalltime		  equ 50
+; Set aux_output_mode to:
+;   0 to set one output high for each direction
+;   1 to use the interlocking relays for direction and power
+aux_output_mode       equ 1
+
  
 ; END USER CONFIGURATION SECTION
 
@@ -113,6 +127,24 @@ set_upperlimit
 	movwf	servo_pulsewidth
 pwm_math_done
 
+#if 0 == aux_output_mode
+
+direction_output_logic
+	movlw	servo_halfway
+	subwf	servo_pulsewidth, w
+	btfss	STATUS, C
+	goto	direction_output_off
+direction_output_on
+	bsf		GPIO, 2
+	bcf		GPIO, 1
+	goto	direction_output_logic_done
+direction_output_off
+	bcf		GPIO, 2
+	bsf		GPIO, 1
+direction_output_logic_done
+
+#else
+
 direction_relay_logic
 	movlw	servo_halfway
 	subwf	servo_pulsewidth, w
@@ -124,7 +156,6 @@ direction_relay_on
 direction_relay_off
 	bcf		GPIO, 2
 direction_relay_logic_done
-
 
 frog_relay_logic
 	movlw	servo_upperlimit
@@ -154,6 +185,7 @@ frog_power_on
 
 frog_relay_logic_done
 
+#endif
 
 #if 255 != servo_stalltime 
 ; Setup where servo shuts down after a given stall time
