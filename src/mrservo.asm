@@ -43,8 +43,8 @@
 ; frog_power_off_delay is the amount of time the frog power relay will remain off after a throw completes
 ;  The delay is approximately (in seconds) = (frog_power_off_delay / 50)
 
-servo_upperlimit      equ 140
-servo_lowerlimit	  equ 100
+servo_upperlimit      equ 170
+servo_lowerlimit	  equ 80
 servo_halfway         equ (servo_upperlimit + servo_lowerlimit)/2
 servo_ramprate		  equ 2
 frog_power_off_delay  equ 25 
@@ -81,7 +81,7 @@ start
 	movlw	0x08
 	tris	GPIO
 
-	movlw	0x80
+	movlw	0xC0
 	option
 
 	movlw	servo_halfway 
