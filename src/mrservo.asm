@@ -1,11 +1,32 @@
-; Slow Motion Servo Turnout Motor Controller
-; File: mrservo.asm  Version: 1.1  Modified:30-Jul-2011
-;  Copyright 2011 Nathan D. Holmes (maverick@drgw.net) 
+;/*************************************************************************
+;Title:    Slow Motion Servo Turnout Motor Controller
+;Authors:  Michael Petersen <railfan@drgw.net>
+;          Nathan Holmes <maverick@drgw.net>
+;File:     mrservo.asm
+;License:  GNU General Public License v3
+;
+;LICENSE:
+;    Copyright (C) 2012 Nathan Holmes and Michael Petersen
+;
+;    This program is free software; you can redistribute it and/or modify
+;    it under the terms of the GNU General Public License as published by
+;    the Free Software Foundation; either version 3 of the License, or
+;    any later version.
+;
+;    This program is distributed in the hope that it will be useful,
+;    but WITHOUT ANY WARRANTY; without even the implied warranty of
+;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;    GNU General Public License for more details.
+;    
+;    You should have received a copy of the GNU General Public License along 
+;    with this program. If not, see http://www.gnu.org/licenses/
+;    
+;*************************************************************************/
+;
 ;  See http://www.ndholmes.com/pmwiki.php/Electronics/ServoMotor
+;   or http://www.iascaled.com/info/MRServo
 ;   for more information and schematic
-;  This is Free Software, licensed under the GPL v2, see for details:
-;      http://www.gnu.org/licenses/gpl-2.0.txt
-
+;
 ; Version Notes
 ; v1.2 -  5 Aug 2011 - Added aux_output_mode to set the outputs based on direction rather
 ;                       than being used for power and direction relays
