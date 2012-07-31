@@ -1,8 +1,9 @@
 #!/bin/bash
 
-gschem -p -o servo.ps -s /usr/share/gEDA/scheme/print.scm servo.sch 
-gschem -p -o relay.ps -s /usr/share/gEDA/scheme/print.scm relay.sch 
-cat servo.ps relay.ps > mrservo.ps
+#gschem -p -o servo.ps -s /usr/share/gEDA/scheme/print.scm servo.sch 
+#gschem -p -o relay.ps -s /usr/share/gEDA/scheme/print.scm relay.sch 
+#cat servo.ps relay.ps > mrservo.ps
+gschem -p -o mrservo.ps -s /usr/share/gEDA/scheme/print.scm mrservo.sch 
 ps2pdf mrservo.ps
-rm servo.ps relay.ps mrservo.ps
+rm *.ps
 acroread mrservo.pdf

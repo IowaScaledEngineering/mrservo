@@ -36,7 +36,7 @@
 ;                       adjusted the limit constants to something more realistic.
 ; v1.0 - 15 Jun 2011 - First public release
 
-#include p10f200.inc
+#include P10F200.INC
 	
 	list P=PIC10F200, ST=ON, MM=ON, R=DEC, X=ON
 	__CONFIG   _CP_OFF & _WDT_ON & _MCLRE_OFF            
@@ -102,7 +102,7 @@ start
 	movlw	0x08
 	tris	GPIO
 
-	movlw	0xC0
+	movlw	0x80
 	option
 
 	movlw	servo_halfway 
