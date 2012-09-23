@@ -1,9 +1,0 @@
-#!/bin/bash
-
-PCB=mrservo
-
-pcb -x ps --psfile $PCB.ps $PCB.pcb
-ps2pdf $PCB.ps
-rm $PCB.ps
-mv $PCB.pdf $PCB-pcb.pdf
-acroread $PCB-pcb.pdf
