@@ -1,5 +1,5 @@
 # release: pcb 20100929
-# date:    Sun Sep 23 10:57:42 2012
+# date:    Thu Jan  3 19:54:21 2013
 # user:    railfan (Michael Petersen,,,)
 # host:    sylvanite
 
@@ -1118,7 +1118,7 @@ Layer(1 "component")
 	Line[71000 5500 77500 12000 4000 2000 "clearline"]
 	Line[77500 12000 101000 12000 4000 2000 "clearline"]
 	Line[81900 12100 82000 12000 2500 2000 "clearline"]
-	Line[96457 5500 96457 5457 1500 2000 "clearline"]
+	Line[63000 88500 63000 68000 7000 2000 "clearline"]
 	Line[125500 108500 121500 108500 2000 2000 "clearline"]
 	Line[81000 5500 97957 5500 1000 2000 "clearline"]
 	Line[102900 17300 110700 17300 2000 2000 "clearline"]
@@ -1189,7 +1189,6 @@ Layer(1 "component")
 	Line[92000 114500 96000 110500 7000 2000 "clearline"]
 	Line[72835 105327 72835 98335 7000 2000 "clearline"]
 	Line[72835 98335 63000 88500 7000 2000 "clearline"]
-	Line[63000 88500 63000 68000 7000 2000 "clearline"]
 	Polygon("")
 	(
 		[7000 2500] [37000 2500] [37000 10500] [7000 10500] 
@@ -1247,7 +1246,7 @@ Layer(2 "solder")
 	Line[110500 10500 75500 10500 1000 2000 "clearline"]
 	Line[90500 17500 98000 17500 1000 2000 "clearline"]
 	Line[83500 17500 90500 24500 1000 2000 "clearline"]
-	Line[149000 6000 149000 7000 2000 2000 "clearline"]
+	Line[118000 76500 118000 85500 4000 2000 "clearline"]
 	Line[146500 14000 159500 14000 2000 2000 "clearline"]
 	Line[132000 28500 146500 14000 2000 2000 "clearline"]
 	Line[109000 28500 132000 28500 2000 2000 "clearline"]
@@ -1308,7 +1307,6 @@ Layer(2 "solder")
 	Line[121000 74000 122000 75000 1000 2000 "clearline"]
 	Line[98500 66000 109000 76500 4000 2000 "clearline"]
 	Line[109000 76500 118000 76500 4000 2000 "clearline"]
-	Line[118000 76500 118000 85500 4000 2000 "clearline"]
 	Polygon("clearpoly")
 	(
 		[7000 26000] [58000 26000] [58000 1000] [7000 1000] 
@@ -1335,7 +1333,7 @@ Layer(3 "silk")
 	Text[101000 9500 2 100 "Iowa Scaled Engineering" "clearline,auto"]
 	Text[167000 3000 2 100 "http://iascaled.com" "clearline,auto"]
 	Text[53000 3500 2 100 "MRSERVO" "clearline,auto"]
-	Text[36000 18000 2 100 "v2.1" "clearline,auto"]
+	Text[36000 18000 2 100 "v2.2" "clearline,auto"]
 	Text[2500 5000 1 100 "VDD" "clearline,auto"]
 	Text[2500 18500 1 100 "GND" "clearline,auto"]
 	Text[2500 32000 1 100 "CNTL" "clearline,auto"]

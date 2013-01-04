@@ -1,5 +1,5 @@
 # release: pcb 20100929
-# date:    Sun Sep 23 11:14:14 2012
+# date:    Thu Jan  3 19:55:32 2013
 # user:    railfan (Michael Petersen,,,)
 # host:    sylvanite
 
@@ -1101,7 +1101,7 @@ Layer(2 "solder")
 	Line[110500 10500 75500 10500 1000 2000 "clearline"]
 	Line[90500 17500 98000 17500 1000 2000 "clearline"]
 	Line[83500 17500 90500 24500 1000 2000 "clearline"]
-	Line[149000 6000 149000 7000 2000 2000 "clearline"]
+	Line[118000 35500 123000 40500 1000 2000 "clearline"]
 	Line[146500 14000 159500 14000 2000 2000 "clearline"]
 	Line[132000 28500 146500 14000 2000 2000 "clearline"]
 	Line[109000 28500 132000 28500 2000 2000 "clearline"]
@@ -1115,7 +1115,6 @@ Layer(2 "solder")
 	Line[94500 34000 96000 35500 1000 2000 "clearline"]
 	Line[96000 35500 118000 35500 1000 2000 "clearline"]
 	Line[93000 40500 95000 40500 1000 2000 "clearline"]
-	Line[118000 35500 123000 40500 1000 2000 "clearline"]
 	Polygon("clearpoly")
 	(
 		[7000 26000] [58000 26000] [58000 1000] [7000 1000] 
@@ -1142,7 +1141,7 @@ Layer(3 "silk")
 	Text[101000 9500 2 100 "Iowa Scaled Engineering" "clearline,auto"]
 	Text[167000 3000 2 100 "http://iascaled.com" "clearline,auto"]
 	Text[53000 3500 2 100 "MRSERVO-1" "clearline,auto"]
-	Text[36000 18000 2 100 "v2.1" "clearline,auto"]
+	Text[36000 18000 2 100 "v2.2" "clearline,auto"]
 	Text[2500 5000 1 100 "VDD" "clearline,auto"]
 	Text[2500 18500 1 100 "GND" "clearline,auto"]
 	Text[2500 32000 1 100 "CNTL" "clearline,auto"]
