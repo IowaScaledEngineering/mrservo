@@ -1,8 +1,8 @@
 G04 start of page 6 for group -4062 idx -4062 *
 G04 Title: (unknown), soldermask *
 G04 Creator: pcb 20110918 *
-G04 CreationDate: Sun 03 Feb 2013 01:35:00 AM GMT UTC *
-G04 For: petersen *
+G04 CreationDate: Tue 05 Feb 2013 02:58:24 AM GMT UTC *
+G04 For: railfan *
 G04 Format: Gerber/RS-274X *
 G04 PCB-Dimensions: 170000 48000 *
 G04 PCB-Coordinate-Origin: lower left *
@@ -10,7 +10,7 @@ G04 PCB-Coordinate-Origin: lower left *
 %FSLAX25Y25*%
 %LNBOTTOMMASK*%
 %ADD60C,0.0907*%
-%ADD59C,0.2937*%
+%ADD59C,0.2997*%
 %ADD58C,0.0860*%
 %ADD57C,0.0900*%
 %ADD56C,0.0660*%
