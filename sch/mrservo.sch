@@ -19,7 +19,7 @@ refdes=C1
 T 46300 54700 5 10 0 0 270 0 1
 symversion=0.1
 T 45700 54100 5 10 1 1 0 0 1
-value=1uF
+value=10uF
 T 45400 54900 5 10 0 0 0 0 1
 footprint=0805
 }
