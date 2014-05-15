@@ -64,6 +64,9 @@
 ; frog_power_off_delay is the amount of time the frog power relay will remain off after a throw completes
 ;  The delay is approximately (in seconds) = (frog_power_off_delay / 50)
 
+; Full Throw = 255 / 0
+; 30 Deg     = 170 / 80 (default)
+; 15 Deg     = 147 / 103
 servo_upperlimit      equ 170
 servo_lowerlimit	  equ 80
 servo_halfway         equ (servo_upperlimit + servo_lowerlimit)/2
