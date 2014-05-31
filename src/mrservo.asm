@@ -66,6 +66,7 @@
 
 ; Full Throw = 255 / 0
 ; 30 Deg     = 170 / 80 (default)
+; 20 Deg     = 153 / 97
 ; 15 Deg     = 147 / 103
 servo_upperlimit      equ 170
 servo_lowerlimit	  equ 80
