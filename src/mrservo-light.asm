@@ -64,6 +64,8 @@
 ; frog_power_off_delay is the amount of time the frog power relay will remain off after a throw completes
 ;  The delay is approximately (in seconds) = (frog_power_off_delay / 50)
 
+; Set close to each other to minimize lockout between toggles.  You do still
+; want some delay to prevent oscillation
 servo_upperlimit      equ 126
 servo_lowerlimit	  equ 124
 servo_halfway         equ (servo_upperlimit + servo_lowerlimit)/2
