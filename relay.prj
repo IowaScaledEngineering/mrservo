@@ -1,4 +1,0 @@
-schematics relay.sch
-output-name relay
-skip-m4
-elements-dir ./fp

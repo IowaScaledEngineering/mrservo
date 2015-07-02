@@ -1,4 +1,0 @@
-schematics sch/servo.sch
-output-name pcb/test
-skip-m4
-elements-dir ./fp
