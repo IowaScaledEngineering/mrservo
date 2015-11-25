@@ -6,12 +6,12 @@ FileVersion[20070407]
 PCB["" 170000 120000]
 
 Grid[500.0 0 0 0]
-Cursor[1000 5500 0.000000]
+Cursor[19500 1500 0.000000]
 PolyArea[200000000.000000]
 Thermal[0.500000]
-DRC[800 1000 800 1000 2000 1000]
+DRC[800 800 800 800 2000 800]
 Flags("showdrc,rubberband,nameonpcb,uniquename,clearnew,snappin")
-Groups("1,c:2,s")
+Groups("1,c:2,s:3")
 Styles["Signal,1000,4000,2000,1000:Power,2500,6000,3500,1000:Fat,4000,6000,3500,1000:Skinny,600,2402,1181,600"]
 
 Symbol[' ' 1800]
@@ -1067,7 +1067,7 @@ Element["" "SOT26" "U3" "unknown" 125500 108500 -7000 -16300 0 100 ""]
 	ElementLine [-11000 -9800 -11000 2000 1000]
 
 	)
-Layer(1 "component")
+Layer(1 "top")
 (
 	Line[34957 17000 30500 17000 4000 2000 "clearline"]
 	Line[30500 17000 24000 23500 4000 2000 "clearline"]
@@ -1228,7 +1228,7 @@ Layer(1 "component")
 		[123500 102000] [128500 102000] [128500 93000] [123500 93000] 
 	)
 )
-Layer(2 "solder")
+Layer(2 "bottom")
 (
 	Line[53000 36000 53000 21000 4000 2000 "clearline"]
 	Line[70000 16000 70000 22000 1000 2000 "clearline"]
@@ -1326,7 +1326,10 @@ Layer(2 "solder")
 		[47500 26000] [58000 26000] [58000 18000] [47500 18000] 
 	)
 )
-Layer(3 "silk")
+Layer(3 "outline")
+(
+)
+Layer(4 "silk")
 (
 	Text[101000 9500 2 100 "Iowa Scaled Engineering" "clearline,onsolder"]
 	Text[167000 3000 2 100 "http://iascaled.com" "clearline,onsolder"]
@@ -1345,7 +1348,7 @@ Layer(3 "silk")
 	Text[82000 117000 0 100 "REV" "clearline,onsolder"]
 	Text[133586 13000 2 100 "(C) 2012" "clearline,onsolder"]
 )
-Layer(4 "silk")
+Layer(5 "silk")
 (
 	Line[500 500 169500 500 1000 2000 "clearline"]
 	Line[169500 500 169500 119500 1000 2000 "clearline"]
