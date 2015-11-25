@@ -3,14 +3,14 @@
 # To read pcb files, the pcb version (or the git source date) must be >= the file version
 FileVersion[20070407]
 
-PCB["" 170000 120000]
+PCB["" 170000 300000]
 
 Grid[500.0 0 0 0]
-Cursor[19500 1500 0.000000]
+Cursor[45000 8000 0.000000]
 PolyArea[200000000.000000]
 Thermal[0.500000]
 DRC[800 800 800 800 2000 800]
-Flags("showdrc,rubberband,nameonpcb,uniquename,clearnew,snappin")
+Flags("showdrc,nameonpcb,uniquename,clearnew,snappin")
 Groups("1,c:2,s:3")
 Styles["Signal,1000,4000,2000,1000:Power,2500,6000,3500,1000:Fat,4000,6000,3500,1000:Skinny,600,2402,1181,600"]
 
@@ -827,20 +827,6 @@ Element["" "0805" "C2" "1uF" 59457 17000 -13021 -5650 0 100 ""]
 
 	)
 
-Element["" "JUMPER3" "J2" "unknown" 61000 5500 26500 -3000 0 100 ""]
-(
-	Pin[0 0 6000 3000 6600 3800 "1" "1" "square,edge2,thermal(1X)"]
-	Pin[10000 0 6000 3000 6600 3800 "2" "2" "edge2"]
-	Pin[20000 0 6000 3000 6600 3800 "3" "3" "edge2"]
-	ElementLine [-5000 5000 25000 5000 1000]
-	ElementLine [25000 -5000 25000 5000 1000]
-	ElementLine [-5000 -5000 25000 -5000 1000]
-	ElementLine [-5000 -5000 -5000 5000 1000]
-	ElementLine [5000 -5000 5000 5000 1000]
-	ElementLine [-5000 -5000 5000 -5000 1000]
-
-	)
-
 Element["" "SOT23_MOS" "Q1" "unknown" 102900 17300 3800 1300 0 100 ""]
 (
 	Pad[0 -300 0 300 3400 3000 4000 "G" "G" "square"]
@@ -853,26 +839,14 @@ Element["" "SOT23_MOS" "Q1" "unknown" 102900 17300 3800 1300 0 100 ""]
 
 	)
 
-Element["" "SOD123" "D3" "unknown" 41000 6500 -3500 -2500 0 89 ""]
-(
-	Pad[6400 -600 6400 600 3600 2000 4200 "1" "1" "square"]
-	Pad[-6500 -600 -6500 600 3600 2000 4200 "2" "2" "square"]
-	ElementLine [3000 -4000 3000 4000 1000]
-	ElementLine [-9900 -4000 -9900 4000 1000]
-	ElementLine [9800 -4000 9800 4000 1000]
-	ElementLine [-9900 4000 9800 4000 1000]
-	ElementLine [-9900 -4000 9800 -4000 1000]
-
-	)
-
 Element["" "SOT26" "U1" "unknown" 78000 25500 -8500 -8300 0 100 ""]
 (
-	Pad[0 -800 0 800 2400 3000 3000 "1" "1" "square,edge2"]
-	Pad[3900 -800 3900 800 2400 3000 3000 "2" "2" "square,edge2"]
-	Pad[7800 -800 7800 800 2400 3000 3000 "3" "3" "square,edge2"]
-	Pad[7800 -9000 7800 -7400 2400 3000 3000 "4" "4" "square"]
-	Pad[3900 -9000 3900 -7400 2400 3000 3000 "5" "5" "square"]
-	Pad[0 -9000 0 -7400 2400 3000 3000 "6" "6" "square"]
+	Pad[0 -800 0 800 2400 3000 3000 "GP0/ICSPDAT" "1" "square,edge2"]
+	Pad[3900 -800 3900 800 2400 3000 3000 "VSS" "2" "square,edge2"]
+	Pad[7800 -800 7800 800 2400 3000 3000 "GP1/ICSPCLK" "3" "square,edge2"]
+	Pad[7800 -9000 7800 -7400 2400 3000 3000 "GP2/T0CKI/FOSC4" "4" "square"]
+	Pad[3900 -9000 3900 -7400 2400 3000 3000 "VDD" "5" "square"]
+	Pad[0 -9000 0 -7400 2400 3000 3000 "GP3/_MCLR/VPP" "6" "square"]
 	ElementLine [-2000 -11000 -2000 2900 1000]
 	ElementLine [-2000 2900 9800 2900 1000]
 	ElementLine [9800 2900 9800 -11000 1000]
@@ -880,20 +854,11 @@ Element["" "SOT26" "U1" "unknown" 78000 25500 -8500 -8300 0 100 ""]
 
 	)
 
-Element["" "1206" "D2" "unknown" 154905 6000 -3150 4350 0 100 ""]
-(
-	Pad[-5905 -1181 -5905 1181 5118 2000 5718 "1" "1" "square"]
-	Pad[5905 -1181 5905 1181 5118 2000 5718 "2" "2" "square"]
-	ElementLine [-2362 -3740 2362 -3740 1000]
-	ElementLine [-2362 3740 2362 3740 1000]
-
-	)
-
 Element["" "TERMBLK3_3p5MM" "J4" "unknown" 50000 119500 20000 -7000 0 100 ""]
 (
-	Pin[9055 -14173 8000 3000 8600 4724 "Pin_1" "1" "square,edge2"]
-	Pin[22835 -14173 8000 3000 8600 4724 "Pin_2" "2" "edge2"]
-	Pin[36614 -14173 8000 3000 8600 4724 "Pin_3" "3" "edge2"]
+	Pin[9055 -14173 8000 3000 8600 4724 "1" "1" "square,edge2"]
+	Pin[22835 -14173 8000 3000 8600 4724 "2" "2" "edge2"]
+	Pin[36614 -14173 8000 3000 8600 4724 "3" "3" "edge2"]
 	ElementLine [0 0 45669 0 1000]
 	ElementLine [45669 -27559 45669 0 1000]
 	ElementLine [0 -27559 45669 -27559 1000]
@@ -913,7 +878,7 @@ Element["" "#4 hex stand off" "" "" 153000 31000 0 10000 0 100 ""]
 
 	)
 
-Element["" "0805" "C1" "1uF" 38500 17000 7307 850 0 100 ""]
+Element["" "0805" "C1" "10uF" 38500 17000 7307 850 0 100 ""]
 (
 	Pad[3543 -393 3543 393 5118 2000 5718 "1" "1" "square"]
 	Pad[-3543 -393 -3543 393 5118 2000 5718 "2" "2" "square"]
@@ -957,22 +922,13 @@ Element["hidename" "JUMPER6" "J3" "unknown" 133000 40500 -59000 -11500 0 100 ""]
 
 Element["" "TERMBLK3_3p5MM" "J1" "unknown" 500 500 21500 39000 0 100 ""]
 (
-	Pin[14173 9055 8000 3000 8600 4724 "Pin_1" "1" "square"]
-	Pin[14173 22835 8000 3000 8600 4724 "Pin_2" "2" "thermal(1X)"]
-	Pin[14173 36614 8000 3000 8600 4724 "Pin_3" "3" ""]
+	Pin[14173 9055 8000 3000 8600 4724 "1" "1" "square"]
+	Pin[14173 22835 8000 3000 8600 4724 "2" "2" "thermal(1X)"]
+	Pin[14173 36614 8000 3000 8600 4724 "3" "3" ""]
 	ElementLine [0 0 0 45669 1000]
 	ElementLine [0 45669 27559 45669 1000]
 	ElementLine [27559 45669 27559 0 1000]
 	ElementLine [27559 0 0 0 1000]
-
-	)
-
-Element["" "0805" "R3" "1k" 101500 5500 7307 -3150 0 100 ""]
-(
-	Pad[3543 -393 3543 393 5118 2000 5718 "1" "1" "square"]
-	Pad[-3543 -393 -3543 393 5118 2000 5718 "2" "2" "square"]
-	ElementLine [-393 2755 393 2755 1000]
-	ElementLine [-393 -2755 393 -2755 1000]
 
 	)
 
@@ -981,11 +937,11 @@ Element["" "RELAY-DPDT" "K2" "unknown" 161500 53000 -8500 12000 0 100 ""]
 	Pin[0 0 6800 3000 7500 3800 "1" "1" "square,edge2"]
 	Pin[-30000 0 6800 3000 7500 3800 "4" "2" "edge2"]
 	Pin[-50000 0 6800 3000 7500 3800 "6" "3" "edge2"]
-	Pin[-70000 0 6800 3000 7500 3800 "4" "4" "edge2"]
+	Pin[-70000 0 6800 3000 7500 3800 "8" "4" "edge2"]
 	Pin[-70000 30000 6800 3000 7500 3800 "9" "5" "edge2"]
-	Pin[-50000 30000 6800 3000 7500 3800 "6" "6" "edge2"]
+	Pin[-50000 30000 6800 3000 7500 3800 "11" "6" "edge2"]
 	Pin[-30000 30000 6800 3000 7500 3800 "13" "7" "edge2"]
-	Pin[0 30000 6800 3000 7500 3800 "8" "8" "edge2"]
+	Pin[0 30000 6800 3000 7500 3800 "16" "8" "edge2"]
 	ElementLine [-75000 -5000 5000 -5000 1000]
 	ElementLine [-75000 -5000 -75000 35000 1000]
 	ElementLine [-75000 35000 5000 35000 1000]
@@ -997,40 +953,13 @@ Element["" "RELAY-DPDT" "K2" "unknown" 161500 53000 -8500 12000 0 100 ""]
 
 Element["" "TERMBLK3_3p5MM" "J5" "unknown" 500 119500 20500 -7000 0 100 ""]
 (
-	Pin[9055 -14173 8000 3000 8600 4724 "Pin_1" "1" "square,edge2"]
-	Pin[22835 -14173 8000 3000 8600 4724 "Pin_2" "2" "edge2"]
-	Pin[36614 -14173 8000 3000 8600 4724 "Pin_3" "3" "edge2"]
+	Pin[9055 -14173 8000 3000 8600 4724 "1" "1" "square,edge2"]
+	Pin[22835 -14173 8000 3000 8600 4724 "2" "2" "edge2"]
+	Pin[36614 -14173 8000 3000 8600 4724 "3" "3" "edge2"]
 	ElementLine [0 0 45669 0 1000]
 	ElementLine [45669 -27559 45669 0 1000]
 	ElementLine [0 -27559 45669 -27559 1000]
 	ElementLine [0 -27559 0 0 1000]
-
-	)
-
-Element["" "0805" "R2" "330" 129043 27000 -14064 -2960 0 100 ""]
-(
-	Pad[3543 -393 3543 393 5118 2000 5718 "1" "1" "square"]
-	Pad[-3543 -393 -3543 393 5118 2000 5718 "2" "2" "square"]
-	ElementLine [-393 2755 393 2755 1000]
-	ElementLine [-393 -2755 393 -2755 1000]
-
-	)
-
-Element["" "0805" "R1" "330" 128957 17000 -12926 -3150 0 100 ""]
-(
-	Pad[3543 -393 3543 393 5118 2000 5718 "1" "1" "square"]
-	Pad[-3543 -393 -3543 393 5118 2000 5718 "2" "2" "square"]
-	ElementLine [-393 2755 393 2755 1000]
-	ElementLine [-393 -2755 393 -2755 1000]
-
-	)
-
-Element["" "1206" "D1" "unknown" 133957 6000 -15457 -1000 0 100 ""]
-(
-	Pad[5905 -1181 5905 1181 5118 2000 5718 "1" "1" "square"]
-	Pad[-5905 -1181 -5905 1181 5118 2000 5718 "2" "2" "square"]
-	ElementLine [-2362 3740 2362 3740 1000]
-	ElementLine [-2362 -3740 2362 -3740 1000]
 
 	)
 
@@ -1039,11 +968,11 @@ Element["" "RELAY-DPDT" "K1" "unknown" 78000 53000 -7500 12000 0 100 ""]
 	Pin[0 0 6800 3000 7500 3800 "1" "1" "square,edge2"]
 	Pin[-30000 0 6800 3000 7500 3800 "4" "2" "edge2"]
 	Pin[-50000 0 6800 3000 7500 3800 "6" "3" "edge2"]
-	Pin[-70000 0 6800 3000 7500 3800 "4" "4" "edge2"]
+	Pin[-70000 0 6800 3000 7500 3800 "8" "4" "edge2"]
 	Pin[-70000 30000 6800 3000 7500 3800 "9" "5" "edge2"]
-	Pin[-50000 30000 6800 3000 7500 3800 "6" "6" "edge2"]
+	Pin[-50000 30000 6800 3000 7500 3800 "11" "6" "edge2"]
 	Pin[-30000 30000 6800 3000 7500 3800 "13" "7" "edge2"]
-	Pin[0 30000 6800 3000 7500 3800 "8" "8" "edge2"]
+	Pin[0 30000 6800 3000 7500 3800 "16" "8" "edge2"]
 	ElementLine [-75000 -5000 5000 -5000 1000]
 	ElementLine [-75000 -5000 -75000 35000 1000]
 	ElementLine [-75000 35000 5000 35000 1000]
@@ -1055,18 +984,106 @@ Element["" "RELAY-DPDT" "K1" "unknown" 78000 53000 -7500 12000 0 100 ""]
 
 Element["" "SOT26" "U3" "unknown" 125500 108500 -7000 -16300 0 100 ""]
 (
-	Pad[-800 0 800 0 2400 3000 3000 "1" "1" "square,edge2"]
-	Pad[-800 -3900 800 -3900 2400 3000 3000 "2" "2" "square,edge2"]
-	Pad[-800 -7800 800 -7800 2400 3000 3000 "3" "3" "square,edge2"]
-	Pad[-9000 -7800 -7400 -7800 2400 3000 3000 "4" "4" "square"]
-	Pad[-9000 -3900 -7400 -3900 2400 3000 3000 "5" "5" "square"]
-	Pad[-9000 0 -7400 0 2400 3000 3000 "6" "6" "square"]
+	Pad[-800 0 800 0 2400 3000 3000 "GND1" "1" "square,edge2"]
+	Pad[-800 -3900 800 -3900 2400 3000 3000 "IN2" "2" "square,edge2"]
+	Pad[-800 -7800 800 -7800 2400 3000 3000 "OUT2" "3" "square,edge2"]
+	Pad[-9000 -7800 -7400 -7800 2400 3000 3000 "GND2" "4" "square"]
+	Pad[-9000 -3900 -7400 -3900 2400 3000 3000 "IN1" "5" "square"]
+	Pad[-9000 0 -7400 0 2400 3000 3000 "OUT1" "6" "square"]
 	ElementLine [-11000 2000 2900 2000 1000]
 	ElementLine [2900 -9800 2900 2000 1000]
 	ElementLine [-11000 -9800 2900 -9800 1000]
 	ElementLine [-11000 -9800 -11000 2000 1000]
 
 	)
+
+Element["" "RPACK4-1206" "R1" "1k" 47348 237224 5100 -11500 0 100 ""]
+(
+	Pad[-4283 -4724 -2413 -4724 1673 2000 2273 "1" "1" "square"]
+	Pad[-4283 -1575 -2413 -1575 1673 2000 2273 "2" "2" "square"]
+	Pad[-4283 1575 -2413 1575 1673 2000 2273 "3" "3" "square"]
+	Pad[-4283 4724 -2413 4724 1673 2000 2273 "4" "4" "square"]
+	Pad[2413 4724 4283 4724 1673 2000 2273 "5" "5" "square,edge2"]
+	Pad[2413 1575 4283 1575 1673 2000 2273 "6" "6" "square,edge2"]
+	Pad[2413 -1575 4283 -1575 1673 2000 2273 "7" "7" "square,edge2"]
+	Pad[2413 -4724 4283 -4724 1673 2000 2273 "8" "8" "square,edge2"]
+	ElementLine [-6299 -6890 6299 -6890 1000]
+	ElementLine [6299 -6890 6299 6890 1000]
+	ElementLine [6299 6890 -6299 6890 1000]
+	ElementLine [-6299 6890 -6299 -6890 1000]
+
+	)
+
+Element["" "SolderJumperSmall" "JP1" "unknown" 37400 204500 -6400 -10000 0 100 ""]
+(
+	Attribute("description" "Soldering Jumper, 60mil, open")
+	Attribute("author" "Stefan Salewski")
+	Attribute("copyright" "2008 S. Salewski")
+	Attribute("use-license" "unlimited")
+	Attribute("dist-license" "GPL")
+	Pad[-3400 0 -3400 0 6000 2000 6000 "1" "1" ""]
+	Pad[-1900 -1500 -1900 1500 3000 2000 3000 "1" "1" "square"]
+	Pad[3400 0 3400 0 6000 2000 6000 "2" "2" "edge2"]
+	Pad[1900 -1500 1900 1500 3000 2000 3000 "2" "2" "square"]
+
+	)
+
+Element["" "SOD123T" "D3" "unknown" 33000 169500 12000 0 3 100 ""]
+(
+	Pad[6500 -1000 6500 1000 5500 2000 6100 "1" "1" "square"]
+	Pad[-6500 -1000 -6500 1000 5500 2000 6100 "2" "2" "square"]
+	ElementLine [-10500 4800 10500 4800 1000]
+	ElementLine [-10500 -4800 10500 -4800 1000]
+	ElementLine [-10500 4800 -10500 -4800 1000]
+	ElementLine [10500 4800 10500 -4800 1000]
+	ElementLine [-2500 4800 -2500 -4800 1000]
+
+	)
+
+Element["" "0805" "D2" "unknown" 74848 190075 -17250 -3650 0 100 ""]
+(
+	Pad[-3543 -393 -3543 393 5118 2000 5718 "CATHODE" "1" "square"]
+	Pad[3543 -393 3543 393 5118 2000 5718 "ANODE" "2" "square"]
+	ElementLine [-393 -2755 393 -2755 1000]
+	ElementLine [-393 2755 393 2755 1000]
+
+	)
+
+Element["" "0805" "D1" "unknown" 30652 145425 -9250 -9650 0 100 ""]
+(
+	Pad[-3543 -393 -3543 393 5118 2000 5718 "CATHODE" "1" "square"]
+	Pad[3543 -393 3543 393 5118 2000 5718 "ANODE" "2" "square"]
+	ElementLine [-393 -2755 393 -2755 1000]
+	ElementLine [-393 2755 393 2755 1000]
+
+	)
+
+Element["" "JUMPER3-OFFSET" "J2" "unknown" 81000 5500 3000 13000 2 100 ""]
+(
+	Pin[0 0 6000 3000 6600 3800 "1" "1" "square,edge2"]
+	Pin[-10000 2500 6000 3000 6600 3800 "2" "2" "edge2"]
+	Pin[-20000 0 6000 3000 6600 3800 "3" "3" "edge2"]
+	ElementLine [-25000 -5000 5000 -5000 1000]
+	ElementLine [-25000 -5000 -25000 5000 1000]
+	ElementLine [5000 -5000 5000 5000 1000]
+	ElementLine [-5000 -5000 -5000 5000 1000]
+	ElementLine [-7000 5000 5000 5000 1000]
+	ElementLine [-25000 5000 -13000 5000 1000]
+
+	)
+Rat[66000 28000 0 69500 21500 0  ""]
+Rat[121500 108500 0 43065 232500 0  ""]
+Rat[43065 232500 0 43065 235649 0  ""]
+Rat[48000 43000 0 26500 168500 0  ""]
+Rat[71000 53000 1 34195 145032 0  ""]
+Rat[78000 26300 0 43065 241948 0  ""]
+Rat[78391 189682 0 109500 105000 1  ""]
+Rat[39500 168500 0 14673 9555 1  ""]
+Rat[26500 114500 0 39300 203000 0  ""]
+Rat[35500 203000 0 48000 83000 1  ""]
+Rat[27109 145032 0 51631 232500 0  ""]
+Rat[71305 189682 0 51631 235649 0  ""]
+Rat[81000 5500 0 51631 241948 0  ""]
 Layer(1 "top")
 (
 	Line[34957 17000 30500 17000 4000 2000 "clearline"]
@@ -1333,8 +1350,8 @@ Layer(4 "silk")
 (
 	Text[101000 9500 2 100 "Iowa Scaled Engineering" "clearline,onsolder"]
 	Text[167000 3000 2 100 "http://iascaled.com" "clearline,onsolder"]
-	Text[53000 3500 2 100 "MRSERVO" "clearline,onsolder"]
-	Text[36000 18000 2 100 "v2.2" "clearline,onsolder"]
+	Text[50000 15500 0 100 "MRSERVO" "clearline,onsolder"]
+	Text[36000 18000 2 100 "v3.0" "clearline,onsolder"]
 	Text[2500 5000 1 100 "VDD" "clearline,onsolder"]
 	Text[2500 18500 1 100 "GND" "clearline,onsolder"]
 	Text[2500 32000 1 100 "CNTL" "clearline,onsolder"]
@@ -1346,7 +1363,7 @@ Layer(4 "silk")
 	Text[54500 117000 0 100 "NOR" "clearline,onsolder"]
 	Text[68500 117000 0 100 "COM" "clearline,onsolder"]
 	Text[82000 117000 0 100 "REV" "clearline,onsolder"]
-	Text[133586 13000 2 100 "(C) 2012" "clearline,onsolder"]
+	Text[133586 13000 2 100 "(C) 2015" "clearline,onsolder"]
 )
 Layer(5 "silk")
 (
@@ -1374,10 +1391,10 @@ NetList()
 		Connect("C1-2")
 		Connect("C2-2")
 		Connect("J1-2")
-		Connect("J2-1")
+		Connect("J2-3")
 		Connect("J3-6")
 		Connect("R1-1")
-		Connect("R2-1")
+		Connect("R1-2")
 		Connect("U1-2")
 		Connect("U2-2")
 		Connect("U3-1")
@@ -1386,7 +1403,7 @@ NetList()
 	Net("unnamed_net1" "(unknown)")
 	(
 		Connect("C1-1")
-		Connect("D3-1")
+		Connect("D3-2")
 		Connect("U2-1")
 	)
 	Net("unnamed_net2" "(unknown)")
@@ -1403,99 +1420,101 @@ NetList()
 	)
 	Net("unnamed_net3" "(unknown)")
 	(
-		Connect("J2-3")
-		Connect("R3-2")
-	)
-	Net("unnamed_net4" "(unknown)")
-	(
 		Connect("J3-1")
-		Connect("R3-1")
+		Connect("R1-4")
 		Connect("U1-1")
 	)
-	Net("unnamed_net5" "(unknown)")
+	Net("unnamed_net4" "(unknown)")
 	(
 		Connect("J3-5")
 		Connect("U1-3")
 		Connect("U3-2")
 	)
-	Net("unnamed_net6" "(unknown)")
+	Net("unnamed_net5" "(unknown)")
 	(
 		Connect("D2-2")
 		Connect("J3-4")
 		Connect("U1-4")
 		Connect("U3-5")
 	)
-	Net("unnamed_net7" "(unknown)")
+	Net("unnamed_net6" "(unknown)")
 	(
 		Connect("J3-2")
 		Connect("Q1-S")
 		Connect("U1-6")
 	)
-	Net("unnamed_net8" "(unknown)")
+	Net("unnamed_net7" "(unknown)")
 	(
-		Connect("D3-2")
+		Connect("D3-1")
 		Connect("J1-1")
 	)
-	Net("unnamed_net9" "(unknown)")
+	Net("unnamed_net8" "(unknown)")
 	(
 		Connect("J1-3")
 		Connect("Q1-D")
 	)
-	Net("unnamed_net10" "(unknown)")
+	Net("unnamed_net9" "(unknown)")
 	(
 		Connect("J5-1")
 		Connect("K1-6")
 	)
-	Net("unnamed_net11" "(unknown)")
+	Net("unnamed_net10" "(unknown)")
 	(
 		Connect("J5-2")
+		Connect("JP1-2")
 		Connect("K2-2")
 		Connect("K2-7")
 	)
-	Net("unnamed_net12" "(unknown)")
+	Net("unnamed_net11" "(unknown)")
 	(
 		Connect("J5-3")
 		Connect("K1-5")
 	)
-	Net("unnamed_net13" "(unknown)")
+	Net("unnamed_net12" "(unknown)")
 	(
 		Connect("J4-2")
 		Connect("K1-2")
 	)
-	Net("unnamed_net14" "(unknown)")
+	Net("unnamed_net13" "(unknown)")
 	(
 		Connect("J4-1")
 		Connect("K1-3")
 	)
-	Net("unnamed_net15" "(unknown)")
+	Net("unnamed_net14" "(unknown)")
 	(
 		Connect("J4-3")
 		Connect("K1-4")
 	)
-	Net("unnamed_net16" "(unknown)")
+	Net("unnamed_net15" "(unknown)")
 	(
 		Connect("K1-8")
 		Connect("U3-6")
 	)
-	Net("unnamed_net17" "(unknown)")
+	Net("unnamed_net16" "(unknown)")
 	(
+		Connect("JP1-1")
 		Connect("K1-7")
 		Connect("K2-4")
 		Connect("K2-5")
 	)
-	Net("unnamed_net18" "(unknown)")
+	Net("unnamed_net17" "(unknown)")
 	(
 		Connect("K2-8")
 		Connect("U3-3")
 	)
-	Net("unnamed_net19" "(unknown)")
+	Net("unnamed_net18" "(unknown)")
 	(
 		Connect("D1-1")
-		Connect("R1-2")
+		Connect("R1-8")
+	)
+	Net("unnamed_net19" "(unknown)")
+	(
+		Connect("D2-1")
+		Connect("R1-7")
 	)
 	Net("unnamed_net20" "(unknown)")
 	(
-		Connect("D2-1")
-		Connect("R2-2")
+		Connect("J2-1")
+		Connect("R1-5")
 	)
 )
