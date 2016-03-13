@@ -63,7 +63,7 @@
 ; servo_delay works with servo_ramprate to slow down the throw.  Used when servo_ramprate is 1 and cannot
 ;  be reduced further.  The PWM will not be updated for the number of loops specified by servo_delay
 
-;  Complete throw will be (in seconds) = (servo_upperlimit - servo_lowerlimit) / (50 * servo_ramprate) / (1 + servo_delay)
+; Complete throw will be (in seconds) = (servo_upperlimit - servo_lowerlimit) * (1 + servo_delay) / (50 * servo_ramprate)
 
 ; frog_power_off_delay is the amount of time the frog power relay will remain off after a throw completes
 ;  The delay is approximately (in seconds) = (frog_power_off_delay / 50)
