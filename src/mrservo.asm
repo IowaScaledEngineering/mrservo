@@ -75,8 +75,8 @@
 servo_upperlimit      equ 170
 servo_lowerlimit	  equ 80
 servo_halfway         equ (servo_upperlimit + servo_lowerlimit)/2
-servo_ramprate		  equ 1
-servo_delay           equ 1
+servo_ramprate		  equ 2
+servo_delay           equ 0
 frog_power_off_delay  equ 25 
 
 ; Set stall time to 255 to make servo always actively driven
