@@ -59,7 +59,11 @@
 ;  if you had some bizarre reason to set where the midpoint of throw was other than that
 
 ; servo_ramprate is a constant defining how fast the servo will move from one end to the other
-;  Complete throw will be (in seconds) = (servo_upperlimit - servo_lowerlimit) / (50 * servo_ramprate)
+
+; servo_delay works with servo_ramprate to slow down the throw.  Used when servo_ramprate is 1 and cannot
+;  be reduced further.  The PWM will not be updated for the number of loops specified by servo_delay
+
+; Complete throw will be (in seconds) = (servo_upperlimit - servo_lowerlimit) * (1 + servo_delay) / (50 * servo_ramprate)
 
 ; frog_power_off_delay is the amount of time the frog power relay will remain off after a throw completes
 ;  The delay is approximately (in seconds) = (frog_power_off_delay / 50)
@@ -72,6 +76,7 @@ servo_upperlimit      equ 170
 servo_lowerlimit	  equ 80
 servo_halfway         equ (servo_upperlimit + servo_lowerlimit)/2
 servo_ramprate		  equ 2
+servo_delay           equ 0
 frog_power_off_delay  equ 25 
 
 ; Set stall time to 255 to make servo always actively driven
@@ -94,6 +99,7 @@ power_off_timer
 hz50_counter
 stall_counter
 servo_pulsewidth
+delay_counter
 	endc
 
 ; Begin application
@@ -115,10 +121,27 @@ start
 	movlw	servo_stalltime
 	movwf	stall_counter
 
+	movlw	servo_delay
+	movwf	delay_counter
+
 main_loop
 	clrwdt
 
 pwm_math
+	movf	delay_counter
+	btfss	STATUS, Z
+	goto decrement_delay_counter
+	; Reset delay counter and check input
+	movlw	servo_delay
+	movwf	delay_counter
+	goto check_input
+
+decrement_delay_counter
+	; Wait longer and skip the pwm math
+	decf	delay_counter, f
+	goto pwm_math_done
+
+check_input
 	; Is GPIO3 high or low?  Move pulsewidth in the right direction at the right ramp rate
 	btfsc	GPIO,3
 	goto	increment_pwm
