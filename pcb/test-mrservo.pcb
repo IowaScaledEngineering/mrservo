@@ -1246,7 +1246,7 @@ Layer(5 "silk")
 	Text[1115.00mil 1770.00mil 1 78 "NOR" "clearline"]
 	Text[1252.80mil 1770.00mil 1 78 "COM" "clearline"]
 	Text[35.3210mm 1770.00mil 1 78 "REV" "clearline"]
-	Text[550.00mil 600.00mil 0 78 "TEST-IRSENSE v1.0" "clearline"]
+	Text[550.00mil 600.00mil 0 78 "TEST-MRSERVO v1.0" "clearline"]
 	Text[555.00mil 655.00mil 0 78 "Iowa Scaled Engineering" "clearline"]
 )
 NetList()
