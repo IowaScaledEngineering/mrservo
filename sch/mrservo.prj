@@ -1,4 +1,4 @@
 schematics mrservo.sch
 output-name ../pcb/mrservo
 skip-m4
-elements-dir ../../../footprints
+elements-dir ../../ise-footprints
