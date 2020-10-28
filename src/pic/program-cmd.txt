@@ -1,0 +1,1 @@
+sudo /home/ndholmes/data/projects/usbreset/usbreset /dev/bus/usb$(lsusb | grep 04d8:0033 | cut -d ":" -f 1 | sed "s/Bus /\//" | sed "s/ Device /\//"); sudo /home/ndholmes/data/projects/pk2cmd/pk2cmd/pk2cmd -PPIC10F200 -F/home/ndholmes/data/projects/mrservo/src/hex/mrservo-v2.hex -M -Y
