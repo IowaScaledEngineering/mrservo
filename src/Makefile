@@ -30,7 +30,7 @@ BASE_NAME = mrservo
 DEVICE  = attiny13
 F_CPU   = 4800000
 FUSE_L  = 0x19
-FUSE_H  = 0xF9
+FUSE_H  = 0xFB
 
 PROGRAMMER_TYPE=iseavrprog
 PROGRAMMER_PORT=usb

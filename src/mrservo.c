@@ -50,7 +50,7 @@ void initializeTimer(void)
 	OCR0A = OCR_OFF;  // OCR0A is used for output PWM
 	TCCR0A = _BV(COM0A1) | _BV(COM0A0) | _BV(WGM01) | _BV(WGM00);
 	TCCR0B = _BV(CS01) | _BV(CS00);  // 64 prescaler
-	TIMSK0 |= _BV(TOIE0);
+	TIMSK0 = _BV(TOIE0);
 }
 
 ISR(TIM0_OVF_vect)
@@ -76,7 +76,7 @@ ISR(TIM0_OVF_vect)
 
 void setRelayOn()
 {
-	PORTB |= _BV(PB1);
+	PORTB |= _BV(PB4);
 }
 
 void setRelayOff()
@@ -116,7 +116,7 @@ void init(void)
 
 uint8_t debounce(uint8_t raw_inputs)
 {
-	static uint8_t clock_A=0, clock_B=0, debounced_state=0;
+	static uint8_t clock_A=0, clock_B=0, debounced_state=0x01;
 	uint8_t delta = raw_inputs ^ debounced_state;   //Find all of the changes
 	uint8_t changes;
 
@@ -129,15 +129,15 @@ uint8_t debounce(uint8_t raw_inputs)
 	changes = ~((~delta) | clock_A | clock_B);
 	debounced_state ^= changes;
 	debounced_state &= 0x0F;
-	return(changes & ~(debounced_state));
+	return(debounced_state);
 }
 
 int main(void)
 {
 	// Deal with watchdog first thing
 	MCUSR = 0;					// Clear reset status
-	init();
-	
+	wdt_reset();
+
 	uint8_t servoUpperLimit = 170;
 	uint8_t servoLowerLimit = 80;
 	uint8_t servoHalfway = ((uint16_t)servoLowerLimit + (uint16_t)servoUpperLimit) / 2;
@@ -149,6 +149,8 @@ int main(void)
 
 	eventFlags = 0;
 	pwmWidth = 0;
+
+	init();
 	sei();
 
 	while(1)
@@ -157,13 +159,14 @@ int main(void)
 
 		if (eventFlags & EVENT_DO_READ)
 		{
+			eventFlags &= ~(EVENT_DO_READ);
 			inputState = debounce(getPositionInput());
 
-			if (inputState && servo < servoUpperLimit)
+			if (inputState && (servo < servoUpperLimit))
 			{
 				servo = min(servo+rampRate, servoUpperLimit);
 				movingTimeout = 50;
-			} else if (!inputState && servo > servoLowerLimit) {
+			} else if (!inputState && (servo > servoLowerLimit)) {
 				servo = max(servo-rampRate, servoLowerLimit);
 				movingTimeout = 50;
 			}
