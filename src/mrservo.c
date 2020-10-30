@@ -21,45 +21,58 @@ LICENSE:
 *************************************************************************/
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include <avr/io.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-volatile uint8_t eventFlags = 0;
-#define EVENT_DO_BD_READ 0x01
-#define EVENT_DO_ADC_RUN 0x02
-#define EVENT_1HZ_BLINK  0x04
+#define min(a,b)  (((a)<(b))?(a):(b))
+#define max(a,b)  (((a)>(b))?(a):(b))
 
-void initialize100HzTimer(void)
+volatile uint8_t eventFlags = 0;
+volatile uint8_t pwmWidth = 0;
+#define EVENT_DO_READ 0x01
+
+// This needs a 4.8MHz clock source
+#define PULSE_1MS   (0x4A)
+#define PULSE_2MS   (0x95)
+
+#define OCR_1MS     (0xFF-PULSE_1MS)
+#define OCR_15MS    (0xFF-((PULSE_2MS - PULSE_1MS) / 2))
+#define OCR_2MS     (0xFF-PULSE_2MS)
+#define OCR_OFF     (0xFF)
+
+void initializeTimer(void)
 {
 	// Set up timer 0 for 100Hz interrupts
 	TCNT0 = 0;
-	OCR0A = 94;  // 9.6MHz / 1024 / 94 ~= 100Hz
-	TCCR0A = _BV(WGM01);
-	TCCR0B = _BV(CS02) | _BV(CS00);  // 1024 prescaler
-	TIMSK0 |= _BV(OCIE0A);
+	OCR0A = OCR_OFF;  // OCR0A is used for output PWM
+	TCCR0A = _BV(COM0A1) | _BV(COM0A0) | _BV(WGM01) | _BV(WGM00);
+	TCCR0B = _BV(CS01) | _BV(CS00);  // 64 prescaler
+	TIMSK0 |= _BV(TOIE0);
 }
 
-ISR(TIM0_COMPA_vect)
+ISR(TIM0_OVF_vect)
 {
 	static uint8_t ticks = 0;
-	static uint8_t decisecs = 0;
+	
+	// This will fire every 3.413mS when timer0 rolls over
+	// This was chosen to get the entire 1-2mS servo PWM range
+	// within the PWM window of OCR0
 
-	if (++ticks >= 10)
+	if (ticks++ >= 6)
 	{
+		// Every 20mS (50Hz), trigger the main loop to read inputs and recalculate position
+		// Also set OCR0A so that we emit a pulse
+		OCR0A = pwmWidth;
+		eventFlags |= EVENT_DO_READ;
 		ticks = 0;
-		eventFlags |= EVENT_DO_ADC_RUN;
-
-		if (++decisecs >=5)
-		{
-			eventFlags ^= EVENT_1HZ_BLINK;
-			decisecs = 0;
-		}
+	} else {
+		// Set OCR0A to off so that we don't emit pulses faster than 50Hz
+		OCR0A = OCR_OFF;
 	}
-
 }
-
 
 void setRelayOn()
 {
@@ -69,6 +82,11 @@ void setRelayOn()
 void setRelayOff()
 {
 	PORTB &= ~_BV(PB4);
+}
+
+uint8_t getPositionInput()
+{
+	return ((PINB & _BV(PB1))?1:0);
 }
 
 void init(void)
@@ -93,7 +111,25 @@ void init(void)
 	DDRB  = 0b00010001;
 	PORTB = 0b00001110;
 
-	initialize100HzTimer();
+	initializeTimer();
+}
+
+uint8_t debounce(uint8_t raw_inputs)
+{
+	static uint8_t clock_A=0, clock_B=0, debounced_state=0;
+	uint8_t delta = raw_inputs ^ debounced_state;   //Find all of the changes
+	uint8_t changes;
+
+	clock_A ^= clock_B;                     //Increment the counters
+	clock_B  = ~clock_B;
+
+	clock_A &= delta;                       //Reset the counters if no changes
+	clock_B &= delta;                       //were detected.
+
+	changes = ~((~delta) | clock_A | clock_B);
+	debounced_state ^= changes;
+	debounced_state &= 0x0F;
+	return(changes & ~(debounced_state));
 }
 
 int main(void)
@@ -101,11 +137,51 @@ int main(void)
 	// Deal with watchdog first thing
 	MCUSR = 0;					// Clear reset status
 	init();
+	
+	uint8_t servoUpperLimit = 170;
+	uint8_t servoLowerLimit = 80;
+	uint8_t servoHalfway = ((uint16_t)servoLowerLimit + (uint16_t)servoUpperLimit) / 2;
+	uint8_t servo = servoLowerLimit;
+	uint8_t rampRate = 2;
+	
+	uint8_t inputState = 0x01;
+	uint8_t movingTimeout = 50;
+
+	eventFlags = 0;
+	pwmWidth = 0;
 	sei();
 
 	while(1)
 	{
 		wdt_reset();
+
+		if (eventFlags & EVENT_DO_READ)
+		{
+			inputState = debounce(getPositionInput());
+
+			if (inputState && servo < servoUpperLimit)
+			{
+				servo = min(servo+rampRate, servoUpperLimit);
+				movingTimeout = 50;
+			} else if (!inputState && servo > servoLowerLimit) {
+				servo = max(servo-rampRate, servoLowerLimit);
+				movingTimeout = 50;
+			}
+			
+			if (servo > servoHalfway)
+				setRelayOn();
+			else
+				setRelayOff();
+
+			if (--movingTimeout > 0)
+			{
+				uint8_t pwmVal = (uint16_t)servo * (PULSE_2MS - PULSE_1MS) / 256;
+				pwmWidth = (0xFF - pwmVal);
+			} else {
+				pwmWidth = OCR_OFF; // Stop driving servo ~1s after we've stopped moving
+			}
+
+		}
 	}
 }
 
