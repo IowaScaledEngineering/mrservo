@@ -28,9 +28,9 @@ BASE_NAME = mrservo
 
 # ATmega13A 9.6MHz internal oscillator
 DEVICE  = attiny13
-F_CPU   = 9600000
-FUSE_L  = 0x1A
-FUSE_H  = 0xFB
+F_CPU   = 4800000
+FUSE_L  = 0x19
+FUSE_H  = 0xF9
 
 PROGRAMMER_TYPE=iseavrprog
 PROGRAMMER_PORT=usb
