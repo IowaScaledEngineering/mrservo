@@ -6,7 +6,7 @@ File:     $Id: $
 License:  GNU General Public License v3
 
 LICENSE:
-    Copyright (C) 2020 Michael Petersen & Nathan Holmes
+    Copyright (C) 2021 Michael Petersen & Nathan Holmes
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,8 +35,8 @@ volatile uint8_t pwmWidth = 0;
 #define EVENT_DO_READ 0x01
 
 // This needs a 4.8MHz clock source
-#define PULSE_1MS   (0x4A)
-#define PULSE_2MS   (0x95)
+#define PULSE_1MS   (56)
+#define PULSE_2MS   (112)
 
 #define OCR_1MS     (0xFF-PULSE_1MS)
 #define OCR_15MS    (0xFF-((PULSE_2MS - PULSE_1MS) / 2))
@@ -45,7 +45,7 @@ volatile uint8_t pwmWidth = 0;
 
 void initializeTimer(void)
 {
-	// Set up timer 0 for 100Hz interrupts
+	// Set up timer 0 for 3.413mS / 293 Hz interrupts
 	TCNT0 = 0;
 	OCR0A = OCR_OFF;  // OCR0A is used for output PWM
 	TCCR0A = _BV(COM0A1) | _BV(COM0A0) | _BV(WGM01) | _BV(WGM00);
@@ -176,10 +176,11 @@ int main(void)
 			else
 				setRelayOff();
 
-			if (--movingTimeout > 0)
+			if (movingTimeout > 0)
 			{
-				uint8_t pwmVal = (uint16_t)servo * (PULSE_2MS - PULSE_1MS) / 256;
-				pwmWidth = (0xFF - pwmVal);
+				movingTimeout--;
+				uint8_t pwmVal = (uint16_t)servo * (PULSE_1MS) / 256;
+				pwmWidth = OCR_1MS - pwmVal;
 			} else {
 				pwmWidth = OCR_OFF; // Stop driving servo ~1s after we've stopped moving
 			}
