@@ -141,16 +141,28 @@ int main(void)
 	uint8_t servoUpperLimit = 170;
 	uint8_t servoLowerLimit = 80;
 	uint8_t servoHalfway = ((uint16_t)servoLowerLimit + (uint16_t)servoUpperLimit) / 2;
-	uint8_t servo = servoLowerLimit;
+	uint8_t servo = servoUpperLimit;
 	uint8_t rampRate = 2;
 	
 	uint8_t inputState = 0x01;
-	uint8_t movingTimeout = 50;
+	uint8_t movingTimeout = 15;
 
 	eventFlags = 0;
 	pwmWidth = 0;
 
 	init();
+
+	// Prime the debouncer with the initial state of the pin
+	for (uint8_t i=0; i<10; i++)
+	{
+		inputState = debounce(getPositionInput());
+		_delay_ms(1);
+	}
+
+	// Set the servo position to the initial state of the pin, because it's
+	// probably where we left it when we powered off
+	servo = (inputState)?servoUpperLimit:servoLowerLimit;
+
 	sei();
 
 	while(1)
@@ -182,7 +194,7 @@ int main(void)
 				uint8_t pwmVal = (uint16_t)servo * (PULSE_1MS) / 256;
 				pwmWidth = OCR_1MS - pwmVal;
 			} else {
-				pwmWidth = OCR_OFF; // Stop driving servo ~1s after we've stopped moving
+				pwmWidth = OCR_OFF; // Stop driving servo ~0.75s after we've stopped moving
 			}
 
 		}
